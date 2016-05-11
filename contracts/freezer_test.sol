@@ -101,7 +101,14 @@ contract FreezerTest is Test {
 
     function testFreeze() {
         token.approve(freezer, FREEZE_AMOUNT);
-        freezer.freeze(FREEZE_DURATION, token, FREEZE_AMOUNT);
+        freezer.freeze(FREEZE_DURATION, token, FREEZE_AMOUNT - 1);
+        assertEq(token.balanceOf(this), 1);
+        assertEq(token.balanceOf(freezer), FREEZE_AMOUNT - 1);
+    }
+
+    function testFreezeWithoutAmount() {
+        token.approve(freezer, FREEZE_AMOUNT);
+        freezer.freeze(FREEZE_DURATION, token);
         assertEq(token.balanceOf(this), 0);
         assertEq(token.balanceOf(freezer), FREEZE_AMOUNT);
     }
