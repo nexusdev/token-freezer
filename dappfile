@@ -1,0 +1,9 @@
+name: token-freezer
+version: 1.0.0
+tags: ['erc20']
+layout:
+  sol_sources: contracts
+  build_dir: build
+dependencies:
+  erc20: 1.0.0
+ignore: []
